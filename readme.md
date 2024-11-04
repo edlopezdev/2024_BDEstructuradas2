@@ -203,6 +203,82 @@ Desarrollar un **procedimiento almacenado** que permita consultar todos los pedi
 - Considera cómo este procedimiento podría integrarse en un sistema de CRM (Customer Relationship Management) para mejorar la experiencia del cliente.
 
 ---
+## Clase 5: Triggers en Bases de Datos
+
+### Descripción de la Clase
+En esta clase, exploraremos los **triggers** en SQL, una herramienta fundamental para automatizar tareas y asegurar la integridad de los datos dentro de una base de datos. Los triggers se ejecutan automáticamente en respuesta a eventos específicos, como inserciones, actualizaciones o eliminaciones de registros.
+
+### Contenido de la Clase
+
+1. **Presentación Teórica:**
+   - Definición de triggers y su utilidad en bases de datos.
+   - Tipos de triggers: AFTER e INSTEAD OF.
+   - Ejemplos prácticos de triggers para auditoría y validación de datos.
+
+2. **Ejemplos Prácticos:**
+   - Creación de un trigger para auditar inserciones en la tabla `Clientes`.
+   - Creación de un trigger para validar que el stock de un producto no sea negativo.
+
+3. **Ejercicio Práctico en Clase:**
+   - Crear un trigger que actualice automáticamente el estado de un pedido a "Completado" cuando todos los productos del pedido están disponibles en stock.
+
+## Ejercicio 4: Calcular el Total de un Pedido
+
+**Problema:**
+
+La empresa necesita calcular automáticamente el total de cada pedido para que pueda ser utilizado en la facturación y en los reportes. El total de un pedido es la suma del precio de cada producto multiplicado por la cantidad solicitada de ese producto.
+
+**Tu Tarea:**
+
+Desarrollar un **procedimiento almacenado** que reciba el `PedidoID` como parámetro y calcule el total del pedido. El total debe ser almacenado en la tabla `Pedidos` en una nueva columna llamada `Total`.
+
+---
+
+## Ejercicio 5: Registrar Cambios de Estado de un Pedido
+
+**Problema:**
+
+La empresa desea mantener un registro histórico de los cambios de estado de cada pedido para fines de auditoría. Cada vez que se cambia el estado de un pedido, se debe registrar el cambio en una tabla separada.
+
+**Tu Tarea:**
+
+Desarrollar un **trigger** que registre cada cambio de estado en una tabla llamada `HistorialEstadoPedidos`.
+
+---
+
+## Ejercicio 6: Productos Más Vendidos
+
+**Problema:**
+
+La empresa quiere conocer cuáles son los productos más vendidos para tomar decisiones sobre el inventario y las promociones.
+
+**Tu Tarea:**
+
+Desarrollar un **procedimiento almacenado** que devuelva una lista de los productos más vendidos, ordenados por la cantidad total vendida.
+
+---
+
+## Ejercicio 7: Actualizar el Stock Después de un Pedido
+
+**Problema:**
+
+Cada vez que se confirma un pedido, el stock de los productos correspondientes debe reducirse en función de las cantidades solicitadas.
+
+**Tu Tarea:**
+
+Desarrollar un **trigger** que se active después de la confirmación de un pedido y actualice el stock de los productos involucrados.
+
+---
+
+## Ejercicio 8: Notificación de Stock Bajo
+
+**Problema:**
+
+La empresa necesita recibir alertas cuando el stock de cualquier producto baja por debajo de un cierto umbral para reordenar el inventario.
+
+**Tu Tarea:**
+
+Desarrollar un **trigger** que verifique el stock después de cada actualización y notifique (por ejemplo, con un `PRINT` o `RAISERROR`) si el stock está por debajo del umbral definido.
 
 
 ## Contribuciones
