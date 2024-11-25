@@ -122,3 +122,51 @@ VALUES
 -- Objetivo: Crear un trigger que registre en una tabla de auditoría cada vez que se inserte un nuevo producto.
 -- 1. Crear una tabla llamada 'AuditoriaProductos' que registre el ID del producto, su nombre, precio y la fecha de inserción.
 -- 2. Implementar un trigger que capture la inserción en la tabla Productos y registre los datos en la tabla de auditoría.
+
+
+-- AYUDA memoria creacion de triggers para todas las Operaciones.
+CREATE TABLE AuditoriaClientes(
+	AuditoriaID INT PRIMARY KEY IDENTITY(1,1),
+	Operacion NVARCHAR(50),
+	ClienteID INT,
+	Nombre NVARCHAR(50),
+	Apellido NVARCHAR(50),
+	FechaOperacion DATETIME DEFAULT GETDATE(),
+	UsuarioOperacion NVARCHAR(50)
+);
+GO;
+CREATE TRIGGER trg_AuditClientes
+ON Clientes
+AFTER INSERT, UPDATE, DELETE
+AS
+BEGIN
+--insert
+IF EXISTS(SELECT * FROM inserted) AND
+			NOT EXISTS (SELECT * FROM deleted)
+BEGIN
+INSERT INTO AuditoriaClientes (Operacion,ClienteID,Nombre,
+Apellido,UsuarioOperacion)
+SELECT 'Insert',i.ClienteID,i.Nombre,i.Apellido,SUSER_NAME()
+FROM inserted i
+END
+--update
+IF EXISTS(select * from inserted) AND
+			EXISTS(SELECT * FROM deleted)
+BEGIN
+-- aca logica update
+INSERT INTO AuditoriaClientes (Operacion,ClienteID,Nombre,
+Apellido,UsuarioOperacion)
+SELECT 'Update', d.ClienteID, d.Nombre,d.Apellido,SUSER_NAME()
+FROM deleted d
+END
+--delete
+IF EXISTS (Select * from deleted) AND 
+			NOT EXISTS (SELECT * from inserted)
+BEGIN
+--logica DELETE
+INSERT INTO AuditoriaClientes (Operacion,ClienteID,Nombre,
+Apellido,UsuarioOperacion)
+SELECT 'DELETE',d.ClienteID,d.Nombre,d.Apellido,SUSER_NAME() 
+FROM deleted d
+END
+END;
