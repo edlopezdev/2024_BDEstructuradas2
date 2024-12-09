@@ -93,3 +93,45 @@ INSERT INTO Reservas VALUES
 (18, 2, 4, 7, '2023-10-05', '2024-03-15', 'Pendiente'),
 (19, 2, 5, 8, '2023-10-20', '2024-04-10', 'Cancelada'),
 (20, 3, 6, 9, '2023-11-10', '2024-05-20', 'Confirmada');
+
+USE AgenciaViajes;
+
+-- Ejercicios de Transacciones
+-- 1. Inserta un nuevo cliente y una nueva reserva en una transacción. Usa un `SAVEPOINT` para realizar un rollback parcial.
+-- 2. Crea una transacción que actualice el estado de una reserva a "Cancelada". Luego, deshaz los cambios con `ROLLBACK`.
+-- 3. Realiza una transacción que elimine un empleado y todas las reservas asociadas a ese empleado. Haz un rollback completo.
+-- 4. Configura un nivel de aislamiento `SERIALIZABLE` para evitar lecturas fantasma. Realiza una consulta de prueba dentro de una transacción.
+-- 5. Inserta un nuevo destino y luego realiza un rollback para deshacer el cambio.
+
+-- Ejercicios de Consultas Básicas
+-- 6. Encuentra los clientes que tienen más de una reserva confirmada.
+-- 7. Calcula el ingreso total generado por las reservas confirmadas.
+-- 8. Devuelve los nombres de los destinos ordenados por costo de mayor a menor.
+-- 9. Muestra todos los clientes que no han realizado reservas.
+-- 10. Encuentra los empleados que han gestionado más reservas.
+-- 11. Muestra las reservas que están programadas para viajes en 2024.
+-- 12. Devuelve el cliente con la mayor cantidad de reservas canceladas.
+-- 13. Muestra el salario promedio de los empleados por cargo.
+-- 14. Encuentra el destino más popular (el que aparece en más reservas confirmadas).
+-- 15. Calcula la longitud de los correos electrónicos de todos los clientes.
+
+-- Ejercicios de Consultas Avanzadas
+-- 16. Usa `UNION` para combinar los nombres de los clientes y los destinos.
+-- 17. Usa una subconsulta para encontrar el cliente con la reserva más reciente.
+-- 18. Muestra los destinos agrupados por país y calcula el número de destinos por país.
+-- 19. Usa `CASE` para clasificar las reservas como "Cercanas" (viaje en menos de 3 meses) o "Lejanas" (más de 3 meses).
+-- 20. Devuelve los nombres completos de los clientes concatenados con sus teléfonos.
+-- 21. Encuentra los destinos con un costo mayor al costo promedio de todos los destinos.
+-- 22. Muestra el costo total de las reservas por cliente.
+-- 23. Usa `HAVING` para mostrar empleados que han gestionado más de 2 reservas confirmadas.
+-- 24. Encuentra las reservas realizadas por empleados contratados en 2021 o después.
+-- 25. Devuelve las reservas programadas entre dos fechas específicas proporcionadas.
+
+-- Ejercicios de Seguridad y Contexto
+-- 26. Crea un procedimiento almacenado cifrado que devuelva todas las reservas confirmadas.
+-- 27. Usa `EXECUTE AS` para ejecutar una consulta que devuelva los destinos reservados con permisos limitados.
+-- 28. Usa `WITH (NOLOCK)` para consultar las reservas sin bloquear filas.
+-- 29. Implementa un procedimiento almacenado que inserte una reserva y maneje errores con `TRY...CATCH`.
+-- 30. Simula un error al intentar insertar un cliente con un `ClienteID` duplicado y captura el mensaje de error con `ERROR_MESSAGE()`.
+
+
